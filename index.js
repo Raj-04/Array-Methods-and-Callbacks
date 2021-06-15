@@ -35,19 +35,21 @@ Use getFinals to do the following:
 
 hint - you should be looking at the stage key inside of the objects
 */
-const getFinals = fifaData.filter(function(data){
-    return data.Stage === 'Final';
-});
-
+// const getFinals = fifaData.filter(function(data){
+//     return data.Stage === 'Final';
+// });
 // const finalteams = getFinals.map(function(data){
 //     return data['Home Team Name'], data['Away Team Name'];
 // });
 
-console.log('Task 2', getFinals);
-// function getFinals(data) {
-//    /* code here */
-// }
 
+
+function getFinals(data) {
+   /* code here */
+   const finalStage = data.filter(data => data.Stage === 'Final');
+   return finalStage;
+};
+console.log('task 2', getFinals(fifaData));
 
 
 
@@ -57,13 +59,20 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-// function getYears(array, getFinals) {
-//     /* code here */
-    
-// }
-const getYears = getFinals.map(array => array.Year);
+function getYears(array, getFinalsCB) {
+    /* code here */
+    const final = getFinalsCB(array);
+    const years = final.map((item)=> item.Year);
+   
+    return years;
+};
 
-console.log('task 3', getYears);
+console.log('task 3', getYears(fifaData, getFinals));
+
+// }
+// const getYears = getFinals.map(array => array.Year);
+
+// console.log('task 3', getYears(fifaData, getFinals));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -95,7 +104,7 @@ hint: the strings returned need to exactly match the string in step 4.
 
 function getWinnersByYear(array, getYearscb, getWinnerscb) {
     /* code here */
-    
+  
 }
 
 
