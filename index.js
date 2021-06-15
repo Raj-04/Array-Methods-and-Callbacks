@@ -86,7 +86,7 @@ function getWinners(array, getFinalsCB) {
     getFinalsCB(array).filter(item => item['Home Team Goals'] > item['Away Team Goals'] ? winners.push(item['Home Team Name']) : winners.push(item['Away Team Name']));
     return winners;
 }
-console.log('task4', getWinners);
+console.log('task4', getWinners(fifaData, getFinals));
 
 
 
@@ -103,8 +103,8 @@ hint: the strings returned need to exactly match the string in step 4.
 
 function getWinnersByYear(array, getYears, getWinners) {
     /* code here */
-  const years = getYears(array);
-  const winners = getWinners(array);
+  const years = getYears(array, getFinals);
+  const winners = getWinners(array, getFinals);
   const winnersYears = [];
 
   for (let i = 0; i<winners.length; i++){
@@ -113,7 +113,7 @@ function getWinnersByYear(array, getYears, getWinners) {
   return winnersYears;
 }
 
-//console.log(getWinnersByYear(fifaData, getYears, getWinners));
+console.log(getWinnersByYear(fifaData, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
@@ -125,10 +125,15 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
+function getAverageGoals(getFinalsCB) {
    /* code here */
+    const singleValue=getFinalsCB.reduce(function(acc, item){
+        return acc + item['Home Team Goals'] +item['Away Team Goals'];
+    },0)
+    let total = singleValue/getFinalsCB.length;
+    return total.toFixed(2);
 }
-
+console.log('task 6', getAverageGoals(getFinals(fifaData)));
 
 
 
